@@ -59,9 +59,9 @@ POST /api/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "alice@example.com",
-  "password": "StrongP@ssw0rd",
-  "username": "alice",
+  "email": "krish123@gmail.com",
+  "password": "krish123",
+  "username": "krish",
   "referralCode": "BOB123"
 }
 ```
