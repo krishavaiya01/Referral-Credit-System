@@ -1,0 +1,22 @@
+{
+  "name": "referral-credit-system",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c green,blue \"npm run -w backend dev\" \"npm run -w frontend dev\"",
+    "dev:backend": "npm run -w backend dev",
+    "dev:frontend": "npm run -w frontend dev",
+    "build": "npm run -w backend build && npm run -w frontend build",
+    "start": "concurrently -n backend,frontend -c green,blue \"npm run -w backend start\" \"npm run -w frontend start\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
+  }
+}
