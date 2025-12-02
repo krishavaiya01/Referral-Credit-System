@@ -110,26 +110,6 @@ Constraints/Indexes:
 - User.referralCode unique index
 - Optional compound index on Referral `(referrerID, referredUserID)` to prevent duplicates
 
-### UML / Flow Diagram
-
-The following Mermaid diagram captures the referral lifecycle. The raw Mermaid source is saved at `docs/uml.mmd` for easy exporting as a static image.
-
-```mermaid
-flowchart TD
-    A[User A Shares Link: /register?r=CODE_A] --> B[User B Registers]
-    B -->|Optional referralCode present| C[Create Referral: referrer=A, referred=B, status=pending]
-    B --> D[User B Logs In]
-    D --> E[User B Buys (POST /purchase)]
-    E -->|Check hasPurchased=false| F[Set hasPurchased=true]
-    F --> G[Find Referral by referredUser=B]
-    G --> H[Update Referral status=converted]
-    H --> I[Atomic Credits: $inc A.credits += 2 and B.credits += 2]
-    I --> J[Dashboard Updates]
-
-    E -->|hasPurchased=true| K[Reject: Already Purchased]
-```
-
-You can embed this diagram directly in GitHub's Markdown renderer. If you need a static image, export it via a Mermaid extension and commit it under `docs/`.
 
 ### Key Business Rules
 - Only the first purchase by a referred user triggers credits.
